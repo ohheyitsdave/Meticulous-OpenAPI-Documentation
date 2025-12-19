@@ -79,23 +79,48 @@ All API endpoints are prefixed with `/api/v1/`. For example:
    - See example responses
 4. **Click "Send"**: The request is sent and you see the response!
 
-#### Step 5: Modify Requests
+## Upload a sound theme 
+### 1. Create theme folder
+```shell
+mkdir my-theme
+cd my-theme
+```
 
-**Example: Update Settings**
+### 2. Create a `config.json`
+```json
+{
+  "startup": {},
+  "heating_start": {},
+  "heating_end": "heating_end.mp3",
+  "brewing_start": "event_start.mp3",
+  "brewing_end": "event_finished.mp3",
+  "abort": {},
+  "idle": {},
+  "notification": "notification.mp3"
+}
+```
 
-1. Navigate to **Settings → Update settings**
-2. Click on the request
-3. Change method to **POST** (if not already)
-4. Go to **Body** tab
-5. Select **raw** and **JSON** format
-6. Enter JSON:
-   ```json
-   {
-     "hostname_override": "my-custom-hostname"
-   }
-   ```
-7. Click **"Send"**
-8. A response should be displayed
+### 3. Add MP3 files to the same folder
+
+### 4. Review structure
+
+```shell
+ my-theme/
+    ├── config.json
+    ├── startup.mp3
+    ├── heating_end.mp3
+    ├── event_start.mp3
+    ├── event_finished.mp3
+    └── notification.mp3
+    └── ....mp3
+```
+
+### 4. Create ZIP in Shell/Terminal
+```shell
+zip -r my-theme .    
+```
+
+### 5. Upload theme
 
 ## Endpoint Categories
 
