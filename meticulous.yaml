@@ -602,31 +602,14 @@ paths:
           required: true
           example: startup
   /api/v1/sounds/theme/set/:theme:
-    get:
-      summary: Set sound theme (GET)
-      operationId: Set sound theme (GET)
-      description: ''
-      tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Set sound theme (GET).bru
-      responses:
-        '200':
-          description: ''
-      parameters:
-        - name: theme
-          in: query
-          description: ''
-          required: true
-          example: default
     post:
-      summary: Set sound theme (POST)
-      operationId: Set sound theme (POST)
+      summary: Set sound theme
+      operationId: Set sound theme
       description: ''
       tags:
         - >-
           /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Set sound theme (POST).bru
+          API/Sounds/Set sound theme.bru
       responses:
         '200':
           description: ''
