@@ -1,0 +1,826 @@
+openapi: 3.0.0
+info:
+  title: meticulous
+  version: 1.0.0
+paths:
+  /api/v1/action/:action:
+    post:
+      summary: Execute a machine action (POST)
+      operationId: Execute a machine action (POST)
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Actions/Execute a machine action (POST).bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: action
+          in: query
+          description: ''
+          required: true
+          example: ''
+    get:
+      summary: Execute a machine action
+      operationId: Execute a machine action
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Actions/Execute a machine action.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: action
+          in: query
+          description: ''
+          required: true
+          example: <string>
+  /api/v1/history/debug.zip:
+    get:
+      summary: Download all debug files as ZIP
+      operationId: Download all debug files as ZIP
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Download all debug files as ZIP.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/history/current:
+    get:
+      summary: Get current shot
+      operationId: Get current shot
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get current shot.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/history/debug/:path:
+    get:
+      summary: Get debug file
+      operationId: Get debug file
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get debug file.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: compressed
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: path
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/history/last-debug-file:
+    get:
+      summary: Get last debug file
+      operationId: Get last debug file
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get last debug file.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/history/last:
+    get:
+      summary: Get last shot
+      operationId: Get last shot
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get last shot.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/history/files/:path:
+    get:
+      summary: Get shot file
+      operationId: Get shot file
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get shot file.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: path
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/history/rating/:shot_id:
+    get:
+      summary: Get shot rating
+      operationId: Get shot rating
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get shot rating.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: shot_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+    post:
+      summary: Rate a shot
+      operationId: Rate a shot
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Rate a shot.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: shot_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+      requestBody:
+        $ref: '#/components/requestBodies/rate_a_shot'
+  /api/v1/history/stats:
+    get:
+      summary: Get shot statistics
+      operationId: Get shot statistics
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Get shot statistics.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/history/search:
+    get:
+      summary: Search profile names
+      operationId: Search profile names
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Search profile names.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: query
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/history:
+    post:
+      summary: Search shot history (POST)
+      operationId: Search shot history (POST)
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Search shot history (POST).bru
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/search_shot_history_(post)'
+    get:
+      summary: Search shot history
+      operationId: Search shot history
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/History/Search shot history.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: query
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: ids
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: start_date
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: end_date
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: order_by
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: sort
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: max_results
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: dump_data
+          in: query
+          description: ''
+          required: false
+          example: ''
+  /api/v1/machine/OS_update_status:
+    get:
+      summary: Get OS update status
+      operationId: Get OS update status
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Machine/Get OS update status.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/machine:
+    get:
+      summary: Get machine information
+      operationId: Get machine information
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Machine/Get machine information.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/profile/delete/:profile_id:
+    delete:
+      summary: Delete profile
+      operationId: Delete profile
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Delete profile.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: profile_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/profile/last:
+    get:
+      summary: Get last loaded profile
+      operationId: Get last loaded profile
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Get last loaded profile.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/profile/changes:
+    get:
+      summary: Get profile changes
+      operationId: Get profile changes
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Get profile changes.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/profile/image/:image_path:
+    get:
+      summary: Get profile image
+      operationId: Get profile image
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Get profile image.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: image_path
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/profile/get/:profile_id:
+    get:
+      summary: Get profile
+      operationId: Get profile
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Get profile.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: profile_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/profile/image:
+    get:
+      summary: List available profile images
+      operationId: List available profile images
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/List available profile images.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/profile/defaults:
+    get:
+      summary: List default profiles
+      operationId: List default profiles
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/List default profiles.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/profile/list:
+    get:
+      summary: List profiles
+      operationId: List profiles
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/List profiles.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: full
+          in: query
+          description: ''
+          required: false
+          example: ''
+  /api/v1/profile/load:
+    get:
+      summary: Load profile by ID
+      operationId: Load profile by ID
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Load profile by ID.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: profile_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+    post:
+      summary: Load profile from JSON
+      operationId: Load profile from JSON
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Load profile from JSON.bru
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/load_profile_from_json'
+  /api/v1/profile/load/:profile_id:
+    get:
+      summary: Load profile by UUID path
+      operationId: Load profile by UUID path
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Load profile by UUID path.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: profile_id
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/profile/save:
+    post:
+      summary: Save profile
+      operationId: Save profile
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Profiles/Save profile.bru
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/save_profile'
+  /api/v1/settings:
+    get:
+      summary: Get all settings
+      operationId: Get all settings
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Settings/Get all settings.bru
+      responses:
+        '200':
+          description: ''
+    post:
+      summary: Update settings
+      operationId: Update settings
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Settings/Update settings.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+      requestBody:
+        $ref: '#/components/requestBodies/update_settings'
+  /api/v1/timezones/:region_type:
+    get:
+      summary: Get timezone data
+      operationId: Get timezone data
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Settings/Get timezone data.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: filter
+          in: query
+          description: ''
+          required: false
+          example: ''
+        - name: region_type
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/scaleCalibrate:
+    get:
+      summary: Start scale calibration
+      operationId: Start scale calibration
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Settings/Start scale calibration.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/machine/time:
+    post:
+      summary: Set system time
+      operationId: Set system time
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Settings/Set system time.bru
+      responses:
+        '200':
+          description: ''
+      requestBody:
+        $ref: '#/components/requestBodies/set_system_time'
+  /api/v1/sounds/theme/get:
+    get:
+      summary: Get current theme
+      operationId: Get current theme
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/Get current theme.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/sounds/list:
+    get:
+      summary: List available sounds
+      operationId: List available sounds
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/List available sounds.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/sounds/theme/list:
+    get:
+      summary: List available themes
+      operationId: List available themes
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/List available themes.bru
+      responses:
+        '200':
+          description: ''
+  /api/v1/sounds/play/:sound:
+    get:
+      summary: Play sound
+      operationId: Play sound
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/Play sound.bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: sound
+          in: query
+          description: ''
+          required: true
+          example: startup
+  /api/v1/sounds/theme/set/:theme:
+    get:
+      summary: Set sound theme (GET)
+      operationId: Set sound theme (GET)
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/Set sound theme (GET).bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: theme
+          in: query
+          description: ''
+          required: true
+          example: default
+    post:
+      summary: Set sound theme (POST)
+      operationId: Set sound theme (POST)
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/Set sound theme (POST).bru
+      responses:
+        '200':
+          description: ''
+      parameters:
+        - name: theme
+          in: query
+          description: ''
+          required: true
+          example: ''
+  /api/v1/sounds/theme/upload:
+    post:
+      summary: Upload sound theme
+      operationId: Upload sound theme
+      description: ''
+      tags:
+        - >-
+          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
+          API/Sounds/Upload sound theme.bru
+      responses:
+        '200':
+          description: ''
+servers:
+  - url: http://ip-address
+components:
+  schemas:
+    rate_a_shot:
+      type: object
+      properties:
+        rating:
+          type: string
+    search_shot_history_(post):
+      type: object
+      properties:
+        query:
+          type: string
+        ids:
+          type: array
+          items:
+            type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        order_by:
+          type: array
+          items:
+            type: string
+        sort:
+          type: string
+        max_results:
+          type: number
+        dump_data:
+          type: boolean
+    load_profile_from_json:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        stages:
+          type: array
+          items:
+            type: string
+          properties:
+            '0':
+              type: object
+    save_profile:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        stages:
+          type: array
+          items:
+            type: string
+          properties:
+            '0':
+              type: object
+    update_settings:
+      type: object
+      properties:
+        enable_sounds:
+          type: boolean
+        disallow_firmware_flashing:
+          type: boolean
+        disable_ui_features:
+          type: boolean
+        debug_shot_data_retention_days:
+          type: number
+        auto_start_shot:
+          type: boolean
+        auto_purge_after_shot:
+          type: boolean
+        partial_retraction:
+          type: number
+        heat_on_boot:
+          type: boolean
+        heating_timeout:
+          type: number
+        update_channel:
+          type: string
+        idle_screen:
+          type: string
+        reverse_scrolling:
+          type: object
+          properties:
+            home:
+              type: boolean
+            keyboard:
+              type: boolean
+            menus:
+              type: boolean
+        allow_legacy_json:
+          type: boolean
+        allow_stage_skipping:
+          type: boolean
+        usb_mode:
+          type: string
+        timezone_sync:
+          type: string
+        time_zone:
+          type: string
+        allow_debug_sending:
+          type: boolean
+        ssh_enabled:
+          type: boolean
+        profile_order:
+          type: array
+          items:
+            type: string
+          properties:
+            '0':
+              type: string
+            '1':
+              type: string
+            '2':
+              type: string
+            '3':
+              type: string
+            '4':
+              type: string
+        hostname_override:
+          type: string
+        get_accesory_data:
+          type: boolean
+    set_system_time:
+      type: object
+      properties:
+        date:
+          type: string
+  requestBodies:
+    rate_a_shot:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/rate_a_shot'
+      description: ''
+      required: true
+    search_shot_history_(post):
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_shot_history_(post)'
+      description: ''
+      required: true
+    load_profile_from_json:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/load_profile_from_json'
+      description: ''
+      required: true
+    save_profile:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/save_profile'
+      description: ''
+      required: true
+    update_settings:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/update_settings'
+      description: ''
+      required: true
+    set_system_time:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/set_system_time'
+      description: ''
+      required: true
+  securitySchemes: {}
