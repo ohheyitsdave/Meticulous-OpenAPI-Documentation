@@ -3,7 +3,7 @@ info:
   title: meticulous
   version: 1.0.0
 paths:
-  /api/v1/action/:action:
+  /api/v1/action/{action}:
     post:
       summary: Execute a machine action (POST)
       operationId: Execute a machine action (POST)
@@ -16,10 +16,12 @@ paths:
           description: ''
       parameters:
       - name: action
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
     get:
       summary: Execute a machine action
       operationId: Execute a machine action
@@ -32,10 +34,12 @@ paths:
           description: ''
       parameters:
       - name: action
-        in: query
+        in: path
         description: ''
         required: true
-        example: <string>
+        example: ''
+        schema:
+          type: string
   /api/v1/history/debug.zip:
     get:
       summary: Download all debug files as ZIP
@@ -58,7 +62,7 @@ paths:
       responses:
         '200':
           description: ''
-  /api/v1/history/debug/:path:
+  /api/v1/history/debug/{path}:
     get:
       summary: Get debug file
       operationId: Get debug file
@@ -76,10 +80,12 @@ paths:
         required: false
         example: ''
       - name: path
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/history/last-debug-file:
     get:
       summary: Get last debug file
@@ -102,7 +108,7 @@ paths:
       responses:
         '200':
           description: ''
-  /api/v1/history/files/:path:
+  /api/v1/history/files/{path}:
     get:
       summary: Get shot file
       operationId: Get shot file
@@ -115,11 +121,13 @@ paths:
           description: ''
       parameters:
       - name: path
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
-  /api/v1/history/rating/:shot_id:
+        schema:
+          type: string
+  /api/v1/history/rating/{shot_id}:
     get:
       summary: Get shot rating
       operationId: Get shot rating
@@ -132,10 +140,12 @@ paths:
           description: ''
       parameters:
       - name: shot_id
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
     post:
       summary: Rate a shot
       operationId: Rate a shot
@@ -148,10 +158,12 @@ paths:
           description: ''
       parameters:
       - name: shot_id
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
       requestBody:
         $ref: '#/components/requestBodies/rate_a_shot'
   /api/v1/history/stats:
@@ -256,7 +268,7 @@ paths:
       responses:
         '200':
           description: ''
-  /api/v1/profile/delete/:profile_id:
+  /api/v1/profile/delete/{profile_id}:
     delete:
       summary: Delete profile
       operationId: Delete profile
@@ -269,10 +281,12 @@ paths:
           description: ''
       parameters:
       - name: profile_id
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/profile/last:
     get:
       summary: Get last loaded profile
@@ -295,7 +309,7 @@ paths:
       responses:
         '200':
           description: ''
-  /api/v1/profile/image/:image_path:
+  /api/v1/profile/image/{image_path}:
     get:
       summary: Get profile image
       operationId: Get profile image
@@ -308,11 +322,13 @@ paths:
           description: ''
       parameters:
       - name: image_path
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
-  /api/v1/profile/get/:profile_id:
+        schema:
+          type: string
+  /api/v1/profile/get/{profile_id}:
     get:
       summary: Get profile
       operationId: Get profile
@@ -325,10 +341,12 @@ paths:
           description: ''
       parameters:
       - name: profile_id
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/profile/image:
     get:
       summary: List available profile images
@@ -397,7 +415,7 @@ paths:
           description: ''
       requestBody:
         $ref: '#/components/requestBodies/load_profile_from_json'
-  /api/v1/profile/load/:profile_id:
+  /api/v1/profile/load/{profile_id}:
     get:
       summary: Load profile by UUID path
       operationId: Load profile by UUID path
@@ -410,10 +428,12 @@ paths:
           description: ''
       parameters:
       - name: profile_id
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/profile/save:
     post:
       summary: Save profile
@@ -456,7 +476,7 @@ paths:
         example: application/json
       requestBody:
         $ref: '#/components/requestBodies/update_settings'
-  /api/v1/timezones/:region_type:
+  /api/v1/timezones/{region_type}:
     get:
       summary: Get timezone data
       operationId: Get timezone data
@@ -474,10 +494,12 @@ paths:
         required: false
         example: ''
       - name: region_type
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/scaleCalibrate:
     get:
       summary: Start scale calibration
@@ -535,7 +557,7 @@ paths:
       responses:
         '200':
           description: ''
-  /api/v1/sounds/play/:sound:
+  /api/v1/sounds/play/{sound}:
     get:
       summary: Play sound
       operationId: Play sound
@@ -548,11 +570,13 @@ paths:
           description: ''
       parameters:
       - name: sound
-        in: query
+        in: path
         description: ''
         required: true
         example: startup
-  /api/v1/sounds/theme/set/:theme:
+        schema:
+          type: string
+  /api/v1/sounds/theme/set/{theme}:
     post:
       summary: Set sound theme
       operationId: Set sound theme
@@ -565,10 +589,12 @@ paths:
           description: ''
       parameters:
       - name: theme
-        in: query
+        in: path
         description: ''
         required: true
         example: ''
+        schema:
+          type: string
   /api/v1/sounds/theme/upload:
     post:
       summary: Upload sound theme
@@ -593,29 +619,6 @@ components:
       properties:
         rating:
           type: string
-    search_shot_history_(post):
-      type: object
-      properties:
-        query:
-          type: string
-        ids:
-          type: array
-          items:
-            type: string
-        start_date:
-          type: string
-        end_date:
-          type: string
-        order_by:
-          type: array
-          items:
-            type: string
-        sort:
-          type: string
-        max_results:
-          type: number
-        dump_data:
-          type: boolean
     load_profile_from_json:
       type: object
       properties:
@@ -722,13 +725,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/rate_a_shot'
-      description: ''
-      required: true
-    search_shot_history_(post):
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/search_shot_history_(post)'
       description: ''
       required: true
     load_profile_from_json:
