@@ -9,44 +9,41 @@ paths:
       operationId: Execute a machine action (POST)
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Actions/Execute a machine action (POST).bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Actions/Execute a machine action (POST).bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: action
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: action
+        in: query
+        description: ''
+        required: true
+        example: ''
     get:
       summary: Execute a machine action
       operationId: Execute a machine action
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Actions/Execute a machine action.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Actions/Execute a machine action.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: action
-          in: query
-          description: ''
-          required: true
-          example: <string>
+      - name: action
+        in: query
+        description: ''
+        required: true
+        example: <string>
   /api/v1/history/debug.zip:
     get:
       summary: Download all debug files as ZIP
       operationId: Download all debug files as ZIP
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Download all debug files as ZIP.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Download all debug files as ZIP.bru
       responses:
         '200':
           description: ''
@@ -56,9 +53,8 @@ paths:
       operationId: Get current shot
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get current shot.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get current shot.bru
       responses:
         '200':
           description: ''
@@ -68,32 +64,30 @@ paths:
       operationId: Get debug file
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get debug file.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get debug file.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: compressed
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: path
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: compressed
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: path
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/history/last-debug-file:
     get:
       summary: Get last debug file
       operationId: Get last debug file
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get last debug file.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get last debug file.bru
       responses:
         '200':
           description: ''
@@ -103,9 +97,8 @@ paths:
       operationId: Get last shot
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get last shot.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get last shot.bru
       responses:
         '200':
           description: ''
@@ -115,53 +108,50 @@ paths:
       operationId: Get shot file
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get shot file.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get shot file.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: path
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: path
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/history/rating/:shot_id:
     get:
       summary: Get shot rating
       operationId: Get shot rating
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get shot rating.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get shot rating.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: shot_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: shot_id
+        in: query
+        description: ''
+        required: true
+        example: ''
     post:
       summary: Rate a shot
       operationId: Rate a shot
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Rate a shot.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Rate a shot.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: shot_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: shot_id
+        in: query
+        description: ''
+        required: true
+        example: ''
       requestBody:
         $ref: '#/components/requestBodies/rate_a_shot'
   /api/v1/history/stats:
@@ -170,9 +160,8 @@ paths:
       operationId: Get shot statistics
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Get shot statistics.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Get shot statistics.bru
       responses:
         '200':
           description: ''
@@ -182,27 +171,25 @@ paths:
       operationId: Search profile names
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Search profile names.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Search profile names.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: query
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: query
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/history:
     post:
       summary: Search shot history (POST)
       operationId: Search shot history (POST)
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Search shot history (POST).bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Search shot history (POST).bru
       responses:
         '200':
           description: ''
@@ -213,62 +200,60 @@ paths:
       operationId: Search shot history
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/History/Search shot history.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Search shot history.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: query
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: ids
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: start_date
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: end_date
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: order_by
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: sort
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: max_results
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: dump_data
-          in: query
-          description: ''
-          required: false
-          example: ''
+      - name: query
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: ids
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: start_date
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: end_date
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: order_by
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: sort
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: max_results
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: dump_data
+        in: query
+        description: ''
+        required: false
+        example: ''
   /api/v1/machine/OS_update_status:
     get:
       summary: Get OS update status
       operationId: Get OS update status
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Machine/Get OS update status.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Machine/Get OS update status.bru
       responses:
         '200':
           description: ''
@@ -278,9 +263,8 @@ paths:
       operationId: Get machine information
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Machine/Get machine information.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Machine/Get machine information.bru
       responses:
         '200':
           description: ''
@@ -290,27 +274,25 @@ paths:
       operationId: Delete profile
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Delete profile.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Delete profile.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: profile_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: profile_id
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/profile/last:
     get:
       summary: Get last loaded profile
       operationId: Get last loaded profile
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Get last loaded profile.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Get last loaded profile.bru
       responses:
         '200':
           description: ''
@@ -320,9 +302,8 @@ paths:
       operationId: Get profile changes
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Get profile changes.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Get profile changes.bru
       responses:
         '200':
           description: ''
@@ -332,45 +313,42 @@ paths:
       operationId: Get profile image
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Get profile image.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Get profile image.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: image_path
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: image_path
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/profile/get/:profile_id:
     get:
       summary: Get profile
       operationId: Get profile
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Get profile.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Get profile.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: profile_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: profile_id
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/profile/image:
     get:
       summary: List available profile images
       operationId: List available profile images
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/List available profile images.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/List available profile images.bru
       responses:
         '200':
           description: ''
@@ -380,9 +358,8 @@ paths:
       operationId: List default profiles
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/List default profiles.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/List default profiles.bru
       responses:
         '200':
           description: ''
@@ -392,44 +369,41 @@ paths:
       operationId: List profiles
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/List profiles.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/List profiles.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: full
-          in: query
-          description: ''
-          required: false
-          example: ''
+      - name: full
+        in: query
+        description: ''
+        required: false
+        example: ''
   /api/v1/profile/load:
     get:
       summary: Load profile by ID
       operationId: Load profile by ID
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Load profile by ID.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Load profile by ID.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: profile_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: profile_id
+        in: query
+        description: ''
+        required: true
+        example: ''
     post:
       summary: Load profile from JSON
       operationId: Load profile from JSON
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Load profile from JSON.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Load profile from JSON.bru
       responses:
         '200':
           description: ''
@@ -441,27 +415,25 @@ paths:
       operationId: Load profile by UUID path
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Load profile by UUID path.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Load profile by UUID path.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: profile_id
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: profile_id
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/profile/save:
     post:
       summary: Save profile
       operationId: Save profile
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Profiles/Save profile.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Profiles/Save profile.bru
       responses:
         '200':
           description: ''
@@ -473,9 +445,8 @@ paths:
       operationId: Get all settings
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Settings/Get all settings.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Settings/Get all settings.bru
       responses:
         '200':
           description: ''
@@ -484,18 +455,17 @@ paths:
       operationId: Update settings
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Settings/Update settings.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Settings/Update settings.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: Content-Type
-          in: header
-          description: ''
-          required: true
-          example: application/json
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        example: application/json
       requestBody:
         $ref: '#/components/requestBodies/update_settings'
   /api/v1/timezones/:region_type:
@@ -504,32 +474,30 @@ paths:
       operationId: Get timezone data
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Settings/Get timezone data.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Settings/Get timezone data.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: filter
-          in: query
-          description: ''
-          required: false
-          example: ''
-        - name: region_type
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: filter
+        in: query
+        description: ''
+        required: false
+        example: ''
+      - name: region_type
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/scaleCalibrate:
     get:
       summary: Start scale calibration
       operationId: Start scale calibration
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Settings/Start scale calibration.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Settings/Start scale calibration.bru
       responses:
         '200':
           description: ''
@@ -539,9 +507,8 @@ paths:
       operationId: Set system time
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Settings/Set system time.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Settings/Set system time.bru
       responses:
         '200':
           description: ''
@@ -553,9 +520,8 @@ paths:
       operationId: Get current theme
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Get current theme.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/Get current theme.bru
       responses:
         '200':
           description: ''
@@ -565,9 +531,8 @@ paths:
       operationId: List available sounds
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/List available sounds.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/List available sounds.bru
       responses:
         '200':
           description: ''
@@ -577,9 +542,8 @@ paths:
       operationId: List available themes
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/List available themes.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/List available themes.bru
       responses:
         '200':
           description: ''
@@ -589,50 +553,51 @@ paths:
       operationId: Play sound
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Play sound.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/Play sound.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: sound
-          in: query
-          description: ''
-          required: true
-          example: startup
+      - name: sound
+        in: query
+        description: ''
+        required: true
+        example: startup
   /api/v1/sounds/theme/set/:theme:
     post:
       summary: Set sound theme
       operationId: Set sound theme
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Set sound theme.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/Set sound theme.bru
       responses:
         '200':
           description: ''
       parameters:
-        - name: theme
-          in: query
-          description: ''
-          required: true
-          example: ''
+      - name: theme
+        in: query
+        description: ''
+        required: true
+        example: ''
   /api/v1/sounds/theme/upload:
     post:
       summary: Upload sound theme
       operationId: Upload sound theme
       description: ''
       tags:
-        - >-
-          /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend
-          API/Sounds/Upload sound theme.bru
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Sounds/Upload sound theme.bru
       responses:
         '200':
           description: ''
 servers:
-  - url: http://ip-address
+- url: http://{ipAddress}
+  variables:
+    ipAddress:
+      default: localhost
+      description: The IP address or hostname of the server
 components:
   schemas:
     rate_a_shot:
