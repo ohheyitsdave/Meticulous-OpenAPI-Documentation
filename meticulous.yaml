@@ -183,18 +183,6 @@ paths:
         required: true
         example: ''
   /api/v1/history:
-    post:
-      summary: Search shot history (POST)
-      operationId: Search shot history (POST)
-      description: ''
-      tags:
-      - >-
-        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/History/Search shot history (POST).bru
-      responses:
-        '200':
-          description: ''
-      requestBody:
-        $ref: '#/components/requestBodies/search_shot_history_(post)'
     get:
       summary: Search shot history
       operationId: Search shot history
