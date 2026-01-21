@@ -15,590 +15,905 @@ tags:
     description: System settings and configuration endpoints
   - name: Sounds
     description: Sound theme and playback endpoints
+  - name: WiFi
+    description: WiFi configuration and management endpoints
+  - name: Update
+    description: Firmware update endpoints
+  - name: Serial
+    description: Serial number and manufacturing endpoints
 paths:
   /api/v1/action/{action}:
     post:
-      summary: Execute a machine action (POST)
-      operationId: Execute a machine action (POST)
-      description: ''
-      tags:
-      - Actions
-      responses:
-        '200':
-          description: ''
-      parameters:
-      - name: action
-        in: path
-        description: ''
-        required: true
-        example: ''
-        schema:
-          type: string
-    get:
       summary: Execute a machine action
-      operationId: Execute a machine action
-      description: ''
+      operationId: executeAction
+      description: Execute a machine action (start, stop, tare, reset, abort, etc.)
       tags:
       - Actions
       responses:
         '200':
-          description: ''
+          description: Action executed successfully
+        '400':
+          description: Invalid action
+        '409':
+          description: Machine is busy or action failed
       parameters:
       - name: action
         in: path
-        description: ''
+        description: Action to execute
         required: true
-        example: ''
+        example: start
         schema:
           type: string
+          enum: [start, stop, tare, scale_master_calibration, preheat, continue, home, purge, reset, abort]
+    get:
+      summary: List machine actions
+      operationId: listMachineActions
+      description: List machine actions
+      tags:
+      - Actions
+      responses:
+        '200':
+          description: Action executed successfully
+        '400':
+          description: Invalid action
+        '409':
+          description: Machine is busy or action failed
+      parameters:
+      - name: action
+        in: path
+        description: Action to execute
+        required: true
+        example: start
+        schema:
+          type: string
+          enum: [start, stop, tare, scale_master_calibration, preheat, continue, home, purge, reset, abort]
   /api/v1/history/debug.zip:
     get:
       summary: Download all debug files as ZIP
-      operationId: Download all debug files as ZIP
-      description: ''
+      operationId: downloadDebugZip
+      description: Download all debug files compressed as a ZIP archive
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: ZIP file containing all debug files
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
   /api/v1/history/current:
     get:
       summary: Get current shot
-      operationId: Get current shot
-      description: ''
+      operationId: getCurrentShot
+      description: Get information about the currently running shot
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Current shot data
   /api/v1/history/debug/{path}:
     get:
       summary: Get debug file
-      operationId: Get debug file
-      description: ''
+      operationId: getDebugFile
+      description: Get a specific debug file by path
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Debug file content
       parameters:
       - name: compressed
         in: query
-        description: ''
+        description: Whether to return compressed content
         required: false
-        example: ''
+        example: true
+        schema:
+          type: boolean
       - name: path
         in: path
-        description: ''
+        description: Path to the debug file
         required: true
-        example: ''
+        example: shot_20240101_120000.json
         schema:
           type: string
   /api/v1/history/last-debug-file:
     get:
       summary: Get last debug file
-      operationId: Get last debug file
-      description: ''
+      operationId: getLastDebugFile
+      description: Get the most recent debug file
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Last debug file content
   /api/v1/history/last:
     get:
       summary: Get last shot
-      operationId: Get last shot
-      description: ''
+      operationId: getLastShot
+      description: Get information about the last completed shot
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Last shot data
   /api/v1/history/files/{path}:
     get:
       summary: Get shot file
-      operationId: Get shot file
-      description: ''
+      operationId: getShotFile
+      description: Get a specific shot file by path
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Shot file content
       parameters:
       - name: path
         in: path
-        description: ''
+        description: Path to the shot file
         required: true
-        example: ''
+        example: shot_20240101_120000.json
         schema:
           type: string
   /api/v1/history/rating/{shot_id}:
     get:
       summary: Get shot rating
-      operationId: Get shot rating
-      description: ''
+      operationId: getShotRating
+      description: Get the rating for a specific shot
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Shot rating
+        '404':
+          description: Shot not found
       parameters:
       - name: shot_id
         in: path
-        description: ''
+        description: UUID of the shot
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
         schema:
           type: string
+          format: uuid
     post:
       summary: Rate a shot
-      operationId: Rate a shot
-      description: ''
+      operationId: rateShot
+      description: Set a rating for a specific shot
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Rating saved successfully
+        '404':
+          description: Shot not found
       parameters:
       - name: shot_id
         in: path
-        description: ''
+        description: UUID of the shot
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
         schema:
           type: string
+          format: uuid
       requestBody:
         $ref: '#/components/requestBodies/rate_a_shot'
   /api/v1/history/stats:
     get:
       summary: Get shot statistics
-      operationId: Get shot statistics
-      description: ''
+      operationId: getShotStatistics
+      description: Get aggregated statistics about shot history
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Shot statistics
   /api/v1/history/search:
     get:
       summary: Search profile names
-      operationId: Search profile names
-      description: ''
+      operationId: searchProfileNames
+      description: Search for profile names using autocomplete
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Matching profile names
       parameters:
       - name: query
         in: query
-        description: ''
+        description: Search query string
         required: true
-        example: ''
+        example: Italian
+        schema:
+          type: string
   /api/v1/history:
     get:
       summary: Search shot history
-      operationId: Search shot history
-      description: ''
+      operationId: searchShotHistory
+      description: Search and filter shot history with various parameters
       tags:
       - History
       responses:
         '200':
-          description: ''
+          description: Matching shot history entries
       parameters:
       - name: query
         in: query
-        description: ''
+        description: Search query string
         required: false
-        example: ''
+        example: Italian Style
+        schema:
+          type: string
       - name: ids
         in: query
-        description: ''
+        description: Filter by shot IDs (can be multiple)
         required: false
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
       - name: start_date
         in: query
-        description: ''
+        description: Start date for filtering (ISO 8601 format)
         required: false
-        example: ''
+        example: 2024-01-01T00:00:00Z
+        schema:
+          type: string
+          format: date-time
       - name: end_date
         in: query
-        description: ''
+        description: End date for filtering (ISO 8601 format)
         required: false
-        example: ''
+        example: 2024-12-31T23:59:59Z
+        schema:
+          type: string
+          format: date-time
       - name: order_by
         in: query
-        description: ''
+        description: Field to order results by
         required: false
-        example: ''
+        example: date
+        schema:
+          type: string
+          enum: [date]
       - name: sort
         in: query
-        description: ''
+        description: Sort order
         required: false
-        example: ''
+        example: desc
+        schema:
+          type: string
+          enum: [asc, desc]
       - name: max_results
         in: query
-        description: ''
+        description: Maximum number of results to return
         required: false
-        example: ''
+        example: 20
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
       - name: dump_data
         in: query
-        description: ''
+        description: Whether to include full shot data
         required: false
-        example: ''
+        example: true
+        schema:
+          type: boolean
   /api/v1/machine/OS_update_status:
     get:
       summary: Get OS update status
-      operationId: Get OS update status
-      description: ''
+      operationId: getOSUpdateStatus
+      description: Get the current status of OS updates
       tags:
       - Machine
       responses:
         '200':
-          description: ''
+          description: OS update status
   /api/v1/machine:
     get:
       summary: Get machine information
-      operationId: Get machine information
-      description: ''
+      operationId: getMachineInfo
+      description: Get detailed information about the machine including serial number, firmware version, etc.
       tags:
       - Machine
       responses:
         '200':
-          description: ''
+          description: Machine information
   /api/v1/machine/backlight:
     post:
       summary: Set backlight brightness
-      operationId: Set backlight brightness
+      operationId: setBacklightBrightness
       description: Set the backlight brightness with optional interpolation and animation time
       tags:
       - Machine
       responses:
         '200':
           description: Backlight brightness updated successfully
+        '400':
+          description: Invalid request (missing brightness value)
+        '403':
+          description: Invalid JSON
       requestBody:
         $ref: '#/components/requestBodies/set_backlight_brightness'
+  /api/v1/machine/time:
+    post:
+      summary: Set system time
+      operationId: setSystemTime
+      description: Set the system date and time
+      tags:
+      - Machine
+      responses:
+        '200':
+          description: System time updated successfully
+        '400':
+          description: Invalid request
+        '500':
+          description: Failed to set system time
+      requestBody:
+        $ref: '#/components/requestBodies/set_system_time'
   /api/v1/profile/delete/{profile_id}:
     delete:
       summary: Delete profile
-      operationId: Delete profile
-      description: ''
+      operationId: deleteProfile
+      description: Delete a profile by UUID
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile deleted successfully
+        '404':
+          description: Profile not found
       parameters:
       - name: profile_id
         in: path
-        description: ''
+        description: UUID of the profile to delete
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
         schema:
           type: string
+          format: uuid
   /api/v1/profile/last:
     get:
       summary: Get last loaded profile
-      operationId: Get last loaded profile
-      description: ''
+      operationId: getLastProfile
+      description: Get information about the last loaded profile
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Last profile information
+        '204':
+          description: No profile loaded
   /api/v1/profile/changes:
     get:
       summary: Get profile changes
-      operationId: Get profile changes
-      description: ''
+      operationId: getProfileChanges
+      description: Get a list of recent profile changes
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: List of profile changes
   /api/v1/profile/image/{image_path}:
     get:
       summary: Get profile image
-      operationId: Get profile image
-      description: ''
+      operationId: getProfileImage
+      description: Get a profile image by path
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
       parameters:
       - name: image_path
         in: path
-        description: ''
+        description: Path to the profile image
         required: true
-        example: ''
+        example: profile_default_1.png
         schema:
           type: string
   /api/v1/profile/get/{profile_id}:
     get:
       summary: Get profile
-      operationId: Get profile
-      description: ''
+      operationId: getProfile
+      description: Get a profile by UUID
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile data
+        '404':
+          description: Profile not found
       parameters:
       - name: profile_id
         in: path
-        description: ''
+        description: UUID of the profile
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
         schema:
           type: string
+          format: uuid
   /api/v1/profile/image:
     get:
       summary: List available profile images
-      operationId: List available profile images
-      description: ''
+      operationId: listProfileImages
+      description: Get a list of available profile images
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: List of available profile images
   /api/v1/profile/defaults:
     get:
       summary: List default profiles
-      operationId: List default profiles
-      description: ''
+      operationId: listDefaultProfiles
+      description: Get a list of default profiles
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: List of default profiles
   /api/v1/profile/list:
     get:
       summary: List profiles
-      operationId: List profiles
-      description: ''
+      operationId: listProfiles
+      description: Get a list of all profiles
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: List of profiles
       parameters:
       - name: full
         in: query
-        description: ''
+        description: Whether to return full profile data
         required: false
-        example: ''
+        example: true
+        schema:
+          type: boolean
   /api/v1/profile/load:
     get:
       summary: Load profile by ID
-      operationId: Load profile by ID
-      description: ''
+      operationId: loadProfileById
+      description: Load a profile by UUID from query parameter
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile loaded successfully
+        '404':
+          description: Profile not found
+        '409':
+          description: Machine is busy
       parameters:
       - name: profile_id
         in: query
-        description: ''
+        description: UUID of the profile to load
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
+        schema:
+          type: string
+          format: uuid
     post:
       summary: Load profile from JSON
-      operationId: Load profile from JSON
-      description: ''
+      operationId: loadProfileFromJson
+      description: Load a profile from JSON data
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile loaded successfully
+        '400':
+          description: Invalid profile data
+        '409':
+          description: Machine is busy
       requestBody:
         $ref: '#/components/requestBodies/load_profile_from_json'
   /api/v1/profile/load/{profile_id}:
     get:
       summary: Load profile by UUID path
-      operationId: Load profile by UUID path
-      description: ''
+      operationId: loadProfileByUuidPath
+      description: Load a profile by UUID from path parameter
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Profile loaded successfully
+        '404':
+          description: Profile not found
+        '409':
+          description: Machine is busy
       parameters:
       - name: profile_id
         in: path
-        description: ''
+        description: UUID of the profile to load
         required: true
-        example: ''
+        example: 123e4567-e89b-12d3-a456-426614174000
         schema:
           type: string
-  /api/v1/profile/save:
+          format: uuid
+  /api/v1/profile/legacy:
     post:
-      summary: Save profile
-      operationId: Save profile
-      description: ''
+      summary: Load legacy profile
+      operationId: loadLegacyProfile
+      description: Load a legacy format profile (requires allow_legacy_json setting)
       tags:
       - Profiles
       responses:
         '200':
-          description: ''
+          description: Legacy profile loaded successfully
+        '404':
+          description: Legacy profiles not enabled
+        '409':
+          description: Machine is busy
+        '400':
+          description: Invalid profile data
+      requestBody:
+        $ref: '#/components/requestBodies/load_profile_from_json'
+  /api/v1/profile/save:
+    post:
+      summary: Save profile
+      operationId: saveProfile
+      description: Save a new or updated profile
+      tags:
+      - Profiles
+      responses:
+        '200':
+          description: Profile saved successfully
+        '400':
+          description: Invalid profile data
       requestBody:
         $ref: '#/components/requestBodies/save_profile'
   /api/v1/settings:
     get:
       summary: Get all settings
-      operationId: Get all settings
-      description: ''
+      operationId: getAllSettings
+      description: Get all user configuration settings
       tags:
       - Settings
       responses:
         '200':
-          description: ''
+          description: All settings
     post:
       summary: Update settings
-      operationId: Update settings
-      description: ''
+      operationId: updateSettings
+      description: Update one or more settings
       tags:
       - Settings
       responses:
         '200':
-          description: ''
-      parameters:
-      - name: Content-Type
-        in: header
-        description: ''
-        required: true
-        example: application/json
+          description: Settings updated successfully
+        '400':
+          description: Invalid request
+        '404':
+          description: Setting not found
       requestBody:
         $ref: '#/components/requestBodies/update_settings'
+  /api/v1/settings/{setting_name}:
+    get:
+      summary: Get specific setting
+      operationId: getSetting
+      description: Get a specific setting by name
+      tags:
+      - Settings
+      responses:
+        '200':
+          description: Setting value
+        '404':
+          description: Setting not found
+      parameters:
+      - name: setting_name
+        in: path
+        description: Name of the setting
+        required: true
+        example: sounds_enabled
+        schema:
+          type: string
   /api/v1/timezones/{region_type}:
     get:
       summary: Get timezone data
-      operationId: Get timezone data
-      description: ''
+      operationId: getTimezoneData
+      description: Get timezone data by region type (countries or cities)
       tags:
       - Settings
       responses:
         '200':
-          description: ''
+          description: Timezone data
+        '403':
+          description: Invalid request
       parameters:
       - name: filter
         in: query
-        description: ''
+        description: Filter string for searching
         required: false
-        example: ''
-      - name: region_type
-        in: path
-        description: ''
-        required: true
-        example: ''
+        example: United
         schema:
           type: string
+      - name: region_type
+        in: path
+        description: Type of region (countries or cities)
+        required: true
+        example: countries
+        schema:
+          type: string
+          enum: [countries, cities]
   /api/v1/scaleCalibrate:
     get:
       summary: Start scale calibration
-      operationId: Start scale calibration
-      description: ''
+      operationId: startScaleCalibration
+      description: Start the scale master calibration process
       tags:
       - Settings
       responses:
         '200':
-          description: ''
-  /api/v1/machine/time:
+          description: Scale calibration started
+  /api/v1/manufacturing:
+    get:
+      summary: Get manufacturing settings
+      operationId: getManufacturingSettings
+      description: Get manufacturing configuration schema (only available in manufacturing mode)
+      tags:
+      - Serial
+      responses:
+        '200':
+          description: Manufacturing settings schema
+        '204':
+          description: Not in manufacturing mode
     post:
-      summary: Set system time
-      operationId: Set system time
-      description: ''
+      summary: Update manufacturing settings
+      operationId: updateManufacturingSettings
+      description: Update manufacturing configuration (only available in manufacturing mode)
       tags:
-      - Settings
+      - Serial
       responses:
         '200':
-          description: ''
+          description: Manufacturing settings updated
+        '400':
+          description: Invalid request
+        '410':
+          description: Not in manufacturing mode
       requestBody:
-        $ref: '#/components/requestBodies/set_system_time'
+        $ref: '#/components/requestBodies/update_manufacturing_settings'
   /api/v1/sounds/theme/get:
     get:
       summary: Get current theme
-      operationId: Get current theme
-      description: ''
+      operationId: getCurrentTheme
+      description: Get the currently active sound theme
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: Current sound theme
   /api/v1/sounds/list:
     get:
       summary: List available sounds
-      operationId: List available sounds
-      description: ''
+      operationId: listSounds
+      description: Get a list of available sound files
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: List of available sounds
   /api/v1/sounds/theme/list:
     get:
       summary: List available themes
-      operationId: List available themes
-      description: ''
+      operationId: listThemes
+      description: Get a list of available sound themes
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: List of available sound themes
   /api/v1/sounds/play/{sound}:
     get:
       summary: Play sound
-      operationId: Play sound
-      description: ''
+      operationId: playSound
+      description: Play a sound file by name
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: Sound playback started
       parameters:
       - name: sound
         in: path
-        description: ''
+        description: Name of the sound to play
         required: true
         example: startup
         schema:
           type: string
+          enum: [startup, event_start, event_finished, heating_end, notification]
   /api/v1/sounds/theme/set/{theme}:
     post:
       summary: Set sound theme
-      operationId: Set sound theme
-      description: ''
+      operationId: setSoundTheme
+      description: Set the active sound theme
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: Sound theme updated successfully
       parameters:
       - name: theme
         in: path
-        description: ''
+        description: Name of the theme to set
         required: true
-        example: ''
+        example: default
         schema:
           type: string
   /api/v1/sounds/theme/upload:
     post:
       summary: Upload sound theme
-      operationId: Upload sound theme
-      description: ''
+      operationId: uploadSoundTheme
+      description: Upload a new sound theme
       tags:
       - Sounds
       responses:
         '200':
-          description: ''
+          description: Sound theme uploaded successfully
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: ZIP file containing sound theme
+  /api/v1/sounds/volume:
+    get:
+      summary: Get sound volume
+      operationId: getSoundVolume
+      description: Get the current sound volume level
+      tags:
+      - Sounds
+      responses:
+        '200':
+          description: Current volume level
+        '500':
+          description: Failed to get volume
+    post:
+      summary: Set sound volume
+      operationId: setSoundVolume
+      description: Set the sound volume level (0-100)
+      tags:
+      - Sounds
+      responses:
+        '200':
+          description: Volume updated successfully
+        '400':
+          description: Invalid volume value
+        '500':
+          description: Failed to set volume
+      requestBody:
+        $ref: '#/components/requestBodies/set_sound_volume'
+  /api/v1/wifi/config:
+    get:
+      summary: Get WiFi configuration
+      operationId: getWifiConfig
+      description: Get current WiFi configuration including mode, AP name, password, and known networks
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: WiFi configuration
+    post:
+      summary: Update WiFi configuration
+      operationId: updateWifiConfig
+      description: Update WiFi configuration (mode, AP password)
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: WiFi configuration updated
+        '400':
+          description: Invalid request
+      requestBody:
+        $ref: '#/components/requestBodies/update_wifi_config'
+  /api/v1/wifi/config/qr.png:
+    get:
+      summary: Get WiFi QR code
+      operationId: getWifiQRCode
+      description: Get QR code image for WiFi access point configuration
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: QR code PNG image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+  /api/v1/wifi/list:
+    get:
+      summary: List available WiFi networks
+      operationId: listWifiNetworks
+      description: Scan and list available WiFi networks
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: List of available WiFi networks
+        '400':
+          description: Failed to scan networks
+  /api/v1/wifi/connect:
+    post:
+      summary: Connect to WiFi network
+      operationId: connectToWifi
+      description: Connect to a WiFi network
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: Connection initiated successfully
+        '400':
+          description: Failed to connect
+      requestBody:
+        $ref: '#/components/requestBodies/connect_wifi'
+  /api/v1/wifi/delete:
+    post:
+      summary: Delete saved WiFi network
+      operationId: deleteWifiNetwork
+      description: Delete a saved WiFi network from known networks
+      tags:
+      - WiFi
+      responses:
+        '200':
+          description: WiFi network deleted successfully
+        '400':
+          description: Failed to delete network
+      requestBody:
+        $ref: '#/components/requestBodies/delete_wifi'
+  /api/v1/update/firmware:
+    post:
+      summary: Update firmware
+      operationId: updateFirmware
+      description: Upload and flash firmware for ESP32 chips
+      tags:
+      - Update
+      responses:
+        '200':
+          description: Firmware update started successfully
+        '400':
+          description: Invalid request or file format
+      parameters:
+      - name: chip
+        in: query
+        description: ESP32 chip type
+        required: true
+        example: ESP32
+        schema:
+          type: string
+          enum: [ESP32, ESP32S2, ESP32S3, ESP32C3]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: ZIP file or firmware binary files
 servers:
 - url: http://{ipAddress}
+  description: PROD
   variables:
     ipAddress:
-      default: localhost
-      description: The IP address or hostname of the server
+      default: 192.168.1.100
+      description: The IP address of the Meticulous machine
 components:
   schemas:
     rate_a_shot:
@@ -606,108 +921,128 @@ components:
       properties:
         rating:
           type: string
+          example: 5
     load_profile_from_json:
       type: object
       properties:
         id:
           type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
         name:
           type: string
+          example: Italian Style
         stages:
           type: array
           items:
-            type: string
-          properties:
-            '0':
-              type: object
+            type: object
     save_profile:
       type: object
       properties:
         id:
           type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
         name:
           type: string
+          example: Italian Style
         stages:
           type: array
           items:
-            type: string
-          properties:
-            '0':
-              type: object
+            type: object
     update_settings:
       type: object
       properties:
         enable_sounds:
           type: boolean
+          example: true
         disallow_firmware_flashing:
           type: boolean
+          example: false
         disable_ui_features:
           type: boolean
+          example: false
         debug_shot_data_retention_days:
           type: number
+          example: 31
         auto_start_shot:
           type: boolean
+          example: false
         auto_purge_after_shot:
           type: boolean
+          example: false
         partial_retraction:
           type: number
+          example: 45.0
         heat_on_boot:
           type: boolean
+          example: true
         heating_timeout:
           type: number
+          example: 10
         update_channel:
           type: string
+          example: stable
         idle_screen:
           type: string
+          example: default
         reverse_scrolling:
           type: object
           properties:
             home:
               type: boolean
+              example: false
             keyboard:
               type: boolean
+              example: false
             menus:
               type: boolean
+              example: false
         allow_legacy_json:
           type: boolean
+          example: false
         allow_stage_skipping:
           type: boolean
+          example: false
         usb_mode:
           type: string
+          example: host
+          enum: [client, host, dual_role]
         timezone_sync:
           type: string
+          example: automatic
         time_zone:
           type: string
+          example: America/New_York
         allow_debug_sending:
           type: boolean
+          example: false
         ssh_enabled:
           type: boolean
+          example: false
         profile_order:
           type: array
           items:
             type: string
-          properties:
-            '0':
-              type: string
-            '1':
-              type: string
-            '2':
-              type: string
-            '3':
-              type: string
-            '4':
-              type: string
+            format: uuid
+          example: [123e4567-e89b-12d3-a456-426614174000, 223e4567-e89b-12d3-a456-426614174001]
         hostname_override:
           type: string
-        get_accesory_data:
-          type: boolean
+          example: my-machine
     set_system_time:
       type: object
+      required:
+        - date
       properties:
         date:
           type: string
+          format: date-time
+          example: 2024-01-15T12:00:00Z
+          description: ISO 8601 formatted date-time string
     set_backlight_brightness:
       type: object
+      required:
+        - brightness
       properties:
         brightness:
           type: number
@@ -720,47 +1055,141 @@ components:
           type: string
           description: Interpolation method for brightness transition
           example: curve
+          enum: [linear, curve]
+          default: curve
         animation_time:
           type: number
           format: float
           description: Animation duration in seconds
           example: 2
           minimum: 0
+          default: 1
+    search_history:
+      type: object
+      properties:
+        query:
+          type: string
+          example: Italian Style
+        ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          example: [123e4567-e89b-12d3-a456-426614174000]
+        start_date:
+          type: string
+          format: date-time
+          example: 2024-01-01T00:00:00Z
+        end_date:
+          type: string
+          format: date-time
+          example: 2024-12-31T23:59:59Z
+        order_by:
+          type: array
+          items:
+            type: string
+          example: [date]
+        sort:
+          type: string
+          enum: [asc, desc]
+          example: desc
+        max_results:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          example: 20
+        dump_data:
+          type: boolean
+          example: true
+    update_manufacturing_settings:
+      type: object
+      description: Manufacturing settings schema (varies based on dial_schema)
+    set_sound_volume:
+      type: object
+      required:
+        - volume
+      properties:
+        volume:
+          type: integer
+          description: Volume level between 0 and 100
+          example: 75
+          minimum: 0
+          maximum: 100
+    update_wifi_config:
+      type: object
+      properties:
+        mode:
+          type: string
+          enum: [ap, client]
+          example: ap
+        apPassword:
+          type: string
+          example: mypassword123
+    connect_wifi:
+      type: object
+      required:
+        - ssid
+      properties:
+        ssid:
+          type: string
+          example: MyWiFiNetwork
+        password:
+          type: string
+          example: mypassword123
+    delete_wifi:
+      type: object
+      required:
+        - ssid
+      properties:
+        ssid:
+          type: string
+          example: MyWiFiNetwork
+    acknowledge_notification:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          example: notification-123
+        response:
+          type: string
+          example: OK
   requestBodies:
     rate_a_shot:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/rate_a_shot'
-      description: ''
+      description: Rating for the shot
       required: true
     load_profile_from_json:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/load_profile_from_json'
-      description: ''
+      description: Profile JSON data
       required: true
     save_profile:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/save_profile'
-      description: ''
+      description: Profile data to save
       required: true
     update_settings:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/update_settings'
-      description: ''
+      description: Settings to update
       required: true
     set_system_time:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/set_system_time'
-      description: ''
+      description: System date and time
       required: true
     set_backlight_brightness:
       content:
@@ -768,5 +1197,54 @@ components:
           schema:
             $ref: '#/components/schemas/set_backlight_brightness'
       description: Request body for setting backlight brightness
+      required: true
+    search_history:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/search_history'
+      description: Search parameters for shot history
+      required: true
+    update_manufacturing_settings:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/update_manufacturing_settings'
+      description: Manufacturing settings to update
+      required: true
+    set_sound_volume:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/set_sound_volume'
+      description: Sound volume level
+      required: true
+    update_wifi_config:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/update_wifi_config'
+      description: WiFi configuration to update
+      required: true
+    connect_wifi:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/connect_wifi'
+      description: WiFi network connection details
+      required: true
+    delete_wifi:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_wifi'
+      description: WiFi network to delete
+      required: true
+    acknowledge_notification:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/acknowledge_notification'
+      description: Notification acknowledgment
       required: true
   securitySchemes: {}
