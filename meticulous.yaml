@@ -268,6 +268,19 @@ paths:
       responses:
         '200':
           description: ''
+  /api/v1/machine/backlight:
+    post:
+      summary: Set backlight brightness
+      operationId: Set backlight brightness
+      description: Set the backlight brightness with optional interpolation and animation time
+      tags:
+      - >-
+        /Users/ohheyitsdave/projects/Meticulous Backend API/Meticulous Backend API/Machine/Set backlight brightness.bru
+      responses:
+        '200':
+          description: Backlight brightness updated successfully
+      requestBody:
+        $ref: '#/components/requestBodies/set_backlight_brightness'
   /api/v1/profile/delete/{profile_id}:
     delete:
       summary: Delete profile
@@ -719,6 +732,26 @@ components:
       properties:
         date:
           type: string
+    set_backlight_brightness:
+      type: object
+      properties:
+        brightness:
+          type: number
+          format: float
+          description: Brightness level between 0.0 and 1.0
+          example: 0.75
+          minimum: 0.0
+          maximum: 1.0
+        interpolation:
+          type: string
+          description: Interpolation method for brightness transition
+          example: curve
+        animation_time:
+          type: number
+          format: float
+          description: Animation duration in seconds
+          example: 2
+          minimum: 0
   requestBodies:
     rate_a_shot:
       content:
@@ -754,5 +787,12 @@ components:
           schema:
             $ref: '#/components/schemas/set_system_time'
       description: ''
+      required: true
+    set_backlight_brightness:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/set_backlight_brightness'
+      description: Request body for setting backlight brightness
       required: true
   securitySchemes: {}
